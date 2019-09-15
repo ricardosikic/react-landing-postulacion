@@ -9,6 +9,17 @@ export class App extends React.Component {
 
   state = {}
 
+  componentDidMount() {
+    fetch('http://127.0.0.1:8000/api/')
+    .then(resp => {
+        console.log(resp.ok);
+        return resp.json();
+    })
+    .then(data => {
+        console.log('llego la data ', data);
+    })
+  }
+
   render() {
     return (
       <TheProvider>

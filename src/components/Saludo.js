@@ -7,7 +7,7 @@ export const Saludo = () =>  {
         <Context.Consumer>
             {value => {
                 return(
-                    <p>Saludo desde {value.store.salud}</p>
+                    <p>Saludo desde {value.salud}</p>
                 )
             }}
         </Context.Consumer>
