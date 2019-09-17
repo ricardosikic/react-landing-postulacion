@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 export class PostList extends React.Component {
 
@@ -35,8 +35,16 @@ export class PostList extends React.Component {
     }
 
     render() {
+        const titles = this.state.posts.map((post, id) => {
+            return(
+             <ul key={id}><li>{post.title}</li></ul>
+            )
+        })
         return(
-            <h2>posts</h2>
+            <Fragment>
+                <h2>posts</h2>
+                <ul>{titles}</ul>
+            </Fragment>
         )
     }
 }

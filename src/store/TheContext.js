@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 export const Context = React.createContext();
 
@@ -46,13 +47,22 @@ export class TheProvider extends React.Component {
     
         })
     }
+
+    // logout actions
+    logout = (e) => {
+        e.preventDefault();
+        console.log('salida');
+        localStorage.removeItem('key');
+        return <Redirect to='/'></Redirect>
+    }
   
     
     render(){
         const myContext = {
             ...this.state,
             fetchData: this.fetchData,
-            submitLogin: this.submitLogin
+            submitLogin: this.submitLogin,
+            logout: this.logout
         }
 
         return(

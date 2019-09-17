@@ -1,6 +1,6 @@
 import React , { Fragment } from 'react';
-import { Login } from './components/login/Login';
-import { PostList } from './components/post-list/postList';
+import { Nav } from './components/nav/Nav';
+import { Main } from './components/main/Main';
 import { TheProvider } from './store/TheContext';
 
 export class App extends React.Component {
@@ -14,8 +14,8 @@ export class App extends React.Component {
     return (
         <Fragment>
           <TheProvider>
-           <Login />
-           <PostList />
+           <Nav />
+           <Main />
           </TheProvider>
         </Fragment>
     );
