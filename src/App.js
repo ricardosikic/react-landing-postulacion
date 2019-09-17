@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React , { Fragment } from 'react';
+import { Login } from './components/login/Login';
+import { PostList } from './components/post-list/postList';
 import { TheProvider } from './store/TheContext';
-import { Saludo } from './components/Saludo';
-import './App.css';
 
 export class App extends React.Component {
 
@@ -9,24 +9,15 @@ export class App extends React.Component {
 
   state = {}
 
-  componentDidMount() {
-    fetch('http://127.0.0.1:8000/api/')
-    .then(resp => {
-        console.log(resp.ok);
-        return resp.json();
-    })
-    .then(data => {
-        console.log('llego la data ', data);
-    })
-  }
 
   render() {
     return (
-      <TheProvider>
         <Fragment>
-          <Saludo />
+          <TheProvider>
+           <Login />
+           <PostList />
+          </TheProvider>
         </Fragment>
-      </TheProvider>
     );
   }
 }

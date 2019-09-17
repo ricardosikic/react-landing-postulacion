@@ -6,32 +6,57 @@ export class TheProvider extends React.Component {
     
     // initial obj state, this obj has store and actions (methods)
     state = {
+        // login data and token
+        loginData: {},
+        token: ''
         
-        salud: [] 
-
     }
 
-    // componentDidMount() {
-    //     this.getInf();
-    // }
+    // login actions
+    fetchData = (e) => {
+        const { name, value } = e.target;
+        const data = { [name]: value };
+        const newData = { ...this.state.loginData, ...data }
+        this.setState({
+            loginData: newData
+        })
+    }
 
-
-    // getInf() {
-    //     fetch('http://127.0.0.1:8000/api')
-    //     .then(resp => {
-    //         console.log(resp.ok);
-    //         return resp.json();
-    //     })
-    //     .then(data => {
-    //         console.log('llego la data ', data);
-    //         this.setStore
-    //     })
-    // }
-
+    submitLogin = (e) => {
+        e.preventDefault(e);
+        let url = 'http://127.0.0.1:8000/api/rest-auth/login/';
+        
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(this.state.loginData),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(resp => {
+            console.log(resp.status);
+            return resp.json();
+        })
+        .then(data => {
+            console.log('recibo mi token', data.key);
+            localStorage.setItem('key', data.key);
+            this.setState({
+                token: this.state.token.concat(data.key)
+            })
+    
+        })
+    }
+  
     
     render(){
+        const myContext = {
+            ...this.state,
+            fetchData: this.fetchData,
+            submitLogin: this.submitLogin
+        }
+
         return(
-            <Context.Provider value={this.state}>
+            <Context.Provider value={myContext}>
                 {this.props.children}
             </Context.Provider>
         )
