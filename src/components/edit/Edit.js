@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Edit } from '../../views/Edit';
 
 export class EditPost extends React.Component {
 
@@ -64,14 +65,8 @@ export class EditPost extends React.Component {
     render() {
         return(
             <Fragment>
-                <h1>hello edittt</h1>
-                <form>
-                    <input defaultValue={this.state.post.title} name='title' onChange={e => this.handleChange(e)}></input>
-                    <input defaultValue={this.state.post.author} name='author' onChange={e => this.handleChange(e)}></input>
-                    <input defaultValue={this.state.post.content} name='content' onChange={e => this.handleChange(e)}></input>
-                    <input defaultValue={this.state.post.url} name='url' onChange={e => this.handleChange(e)}></input>
-                    <button onClick={e => this.handleEdit(e, this.state.post.id)}>Editar</button>
-                </form>
+                {/* paso por props info que quiere consumir el hijo en la vista. */}
+                <Edit editInfo={this.state.post} editClick={this.handleEdit} change={this.handleChange}/>
             </Fragment>
         )
     }
