@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { SinglePage } from '../../views/SinglePost';
 
 export class SinglePost extends React.Component {
 
@@ -35,8 +36,8 @@ export class SinglePost extends React.Component {
         console.log('que recibe?', this.state.post)
         return(
             <Fragment>
-                <h1>Single post</h1>
-                <h2>{this.state.post.title}</h2>
+                {/* paso la data proveniente de la api por props */}
+                <SinglePage postInfo={this.state.post}/>
             </Fragment>
         )
     }
