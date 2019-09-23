@@ -44,7 +44,6 @@ export class TheProvider extends React.Component {
             this.setState({
                 token: this.state.token.concat(data.key)
             })
-    
         })
     }
 
@@ -53,7 +52,6 @@ export class TheProvider extends React.Component {
         e.preventDefault();
         console.log('salida');
         localStorage.removeItem('key');
-        return <Redirect to='/'></Redirect>
     }
   
     
