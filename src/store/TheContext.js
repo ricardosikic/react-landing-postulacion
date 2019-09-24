@@ -53,6 +53,9 @@ export class TheProvider extends React.Component {
         e.preventDefault();
         console.log('salida');
         localStorage.removeItem('key');
+        this.setState({
+            isLogin: false
+        })
     }
   
     
