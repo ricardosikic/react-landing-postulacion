@@ -9,8 +9,8 @@ export class TheProvider extends React.Component {
     state = {
         // login data and token
         loginData: {},
-        token: ''
-        
+        token: '',
+        isLogin: false      
     }
 
     // login actions
@@ -42,7 +42,8 @@ export class TheProvider extends React.Component {
             console.log('recibo mi token', data.key);
             localStorage.setItem('key', data.key);
             this.setState({
-                token: this.state.token.concat(data.key)
+                token: this.state.token.concat(data.key),
+                isLogin: true
             })
         })
     }
