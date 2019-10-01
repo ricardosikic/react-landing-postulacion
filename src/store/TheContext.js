@@ -57,7 +57,8 @@ export class TheProvider extends React.Component {
             isLogin: false
         })
     }
-  
+
+
     
     render(){
         const myContext = {
