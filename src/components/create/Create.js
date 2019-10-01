@@ -7,6 +7,7 @@ export class CreatePost extends React.Component {
     state = {
         title: '',
         description: '',
+        content: '',
         selectedFile: null
     }
 
