@@ -38,7 +38,10 @@ export class PostList extends React.Component {
     render() {
         const titles = this.state.posts.map((post, id) => {
             return(
-             <ul key={id}><li><Link to={'/single/' + post.id}>{post.title}</Link></li></ul>
+              
+             <ul key={id}>
+                <li><Link to={'/single/' + post.id}>{post.title}</Link></li>
+             </ul>
             )
         })
         return(

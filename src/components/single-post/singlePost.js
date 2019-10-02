@@ -33,7 +33,7 @@ export class SinglePost extends React.Component {
    }
 
     render() {
-        console.log('que recibe?', this.state.post)
+        console.log('que recibe y pasa a post info?', this.state.post)
         return(
             <Fragment>
                 {/* paso la data proveniente de la api por props */}
