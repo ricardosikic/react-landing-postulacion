@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Edit } from '../../views/Edit';
+import { EditView } from '../../views/admin/Edit';
 
 export class EditPost extends React.Component {
 
@@ -66,7 +66,7 @@ export class EditPost extends React.Component {
         return(
             <Fragment>
                 {/* paso por props info que quiere consumir el hijo en la vista. */}
-                <Edit editInfo={this.state.post} editClick={this.handleEdit} change={this.handleChange}/>
+                <EditView editInfo={this.state.post} editClick={this.handleEdit} change={this.handleChange}/>
             </Fragment>
         )
     }

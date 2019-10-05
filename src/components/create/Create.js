@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import axios from 'axios';
 
 
+
 export class CreatePost extends React.Component {
     
     state = {
@@ -109,7 +110,6 @@ export class CreatePost extends React.Component {
 
         return(
             <Fragment>
-                <h1>Create page</h1>
                 <form>
                     <input name='title' placeholder='title' onChange={e => this.handleTitle(e)}></input>
                     <input name='description' placeholder='description' onChange={e => this.handleDescription(e)}></input>

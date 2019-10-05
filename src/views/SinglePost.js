@@ -11,7 +11,7 @@ export const SinglePage = ({postInfo}) => {
             <h2>{postInfo.title}</h2>
             <p>{postInfo.content}</p>
 
-            <button><Link to={'/edit/single/' + postInfo.id}>Editar</Link></button>
+            <button><Link to={'/admin/edit/single/' + postInfo.id}>Editar</Link></button>
         </Fragment>
         
     )
