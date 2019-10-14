@@ -6,6 +6,7 @@ export class EditPost extends React.Component {
 
     state = {
         post: {},
+        categorias: [],
         edited: {},
         title: '',
         description: '',
@@ -16,6 +17,30 @@ export class EditPost extends React.Component {
  
     componentDidMount() {
         this.getSinglePost(this.props.match.params.id);
+        this.getCategories();
+    }
+
+    getCategories = () => {
+        console.log('categoriasss');
+        let url = 'http://127.0.0.1:8000/api/categories/';
+        const secretKey = localStorage.getItem('key')
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                Authorization: `token ${secretKey}`
+            }
+        })
+        .then(resp => {
+            console.log('recibe la info para categorias', resp.status);
+            return resp.json();
+        })
+        .then(info => {
+            console.log('recibe las categorias', info);
+            this.setState({
+                categorias: this.state.categorias.concat(info)
+            })
+        })
     }
  
     getSinglePost = (id) => {
@@ -63,6 +88,12 @@ export class EditPost extends React.Component {
             selectedFile: e.target.files[0]
         })
     }
+
+    handleCategory = (e) => {
+        this.setState({
+            category: e.target
+        })
+    }
     
     // el evento click dispara la funcion handleEdit que envia como parametro el id del post
     handleEdit = (e, id) => {
@@ -73,6 +104,9 @@ export class EditPost extends React.Component {
         let formData = new FormData();
         formData.append('photo', this.state.selectedFile)
         formData.append('title', this.state.title.value)
+        formData.append('description', this.state.description.value)
+        formData.append('content', this.state.content.value)
+        formData.append('category', this.state.category.value)
 
         const secretKey = localStorage.getItem('key');
         let url = 'http://127.0.0.1:8000/api/' + id + '/';
@@ -117,7 +151,13 @@ export class EditPost extends React.Component {
     // }
 
     render() {
-        console.log(this.state.post.photo);
+        
+        const cat = this.state.categorias.map((categoria, id) => {
+            return(
+                <option key={id} value={categoria.id}>{categoria.category_name}</option>
+            )
+        })
+
         return(
             <Fragment>
                 {/* paso por props info que quiere consumir el hijo en la vista. */}
@@ -128,6 +168,7 @@ export class EditPost extends React.Component {
                     <input name='title' defaultValue={this.state.post.title} placeholder='title' onChange={e => this.handleTitle(e)}></input>
                     <input type='description' defaultValue={this.state.post.description} placeholder='description' onChange={e => this.handleDescription(e)}></input>
                     <input type='content' defaultValue={this.state.post.content} placeholder='content' onChange={e => this.handleContent(e)}></input>
+                    <select name='category' onChange={e => this.handleCategory(e)}>{cat}</select>
                     <button onClick={e => this.handleEdit(e, this.state.post.id)}>guardar</button>
                 </form>
                 {/* <EditView editInfo={this.state.post} editClick={this.handleEdit} change={this.handleChange}/> */}
